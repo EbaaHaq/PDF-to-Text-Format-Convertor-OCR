@@ -1,41 +1,50 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.filedialog import askopenfile
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, showerror
 
-import PyPDF2 as PyPDF2
+import PyPDF2
+import pytesseract as tess
+from PIL import Image
 
 window = tk.Tk()
 window.title("PDF to text converter")
 
-
 def openfile():
     file = askopenfile(filetypes=[('PDF Files', '*.pdf')])
-    pdf_file = open(file.name, 'rb')
-    read_pdf = PyPDF2.PdfReader(pdf_file)
-    page = read_pdf.pages[0]
-    page_content = page.extractText()
-    with open('content.txt', 'w', encoding='utf-8') as f:
-        f.write(page_content)
-    for i in range(1, len(read_pdf.pages)):
-        page = read_pdf.pages[i]
-        page_content = page.extractText()
-        with open('content.txt', 'a', encoding='utf-8') as fp:
-            fp.write(page_content)
-    showinfo("Done", "Successfully Converted")
-
+    if file:
+        try:
+            with open(file.name, 'rb') as pdf_file:
+                read_pdf = PyPDF2.PdfReader(pdf_file)
+                page_content = ""
+                for page in read_pdf.pages:
+                    try:
+                        page_content += page.extract_text() or ""
+                    except Exception as e:
+                        showerror("Error", f"An error occurred while extracting text from page: {e}")
+                        return
+                with open('content.txt', 'w', encoding='utf-8') as f:
+                    f.write(page_content)
+            showinfo("Done", "Successfully Converted")
+        except Exception as e:
+            showerror("Error", f"An error occurred while reading the PDF file: {e}")
 def ocrfile():
-    print("welcome to OCR")
-    import pytesseract as tess
-    tess.pytesseract.tesseract_cmd = r'D:\Program Files\Tesseract-OCR\tesseract.exe'
-    from PIL import Image
-    file = askopenfile(filetypes=[('PNG Files', '.png'),('JPG Files', '.jpg'),('JPG Files', '.')])
-    img = Image.open(file.name)
-    text = tess.image_to_string(img)
-    with open("imgtext.txt", "w", encoding='utf-8') as f:
-        f.write(text)
-    showinfo("Done", "Successfully Converted")
+    try:
+        tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'  # Update this path as necessary
+    except Exception as e:
+        showerror("Error", "Tesseract is not installed or it's not in your PATH. Please install Tesseract OCR.")
+        return
 
+    file = askopenfile(filetypes=[('PNG Files', '*.png'), ('JPG Files', '*.jpg')])
+    if file:
+        try:
+            img = Image.open(file.name)
+            text = tess.image_to_string(img)
+            with open("imgtext.txt", "w", encoding='utf-8') as f:
+                f.write(text)
+            showinfo("Done", "Successfully Converted")
+        except Exception as e:
+            showerror("Error", f"An error occurred while performing OCR: {e}")
 
 
 label = tk.Label(window, text="Choose pdf file: ")
@@ -49,6 +58,5 @@ label.grid(row=1, column=0, padx=5, pady=5)
 
 button = ttk.Button(window, text="Select", width=30, command=ocrfile)
 button.grid(row=1, column=1, padx=5, pady=5)
-
 
 window.mainloop()

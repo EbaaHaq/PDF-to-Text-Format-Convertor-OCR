@@ -1,0 +1,50 @@
+CMPE-371: Digital Signal Processing
+Lecture 
+ScheduleSee Time TableCourse Type,
+SemesterFundamental Engineering,
+6th
+Credit HoursThreePre-requisite/
+Co-requisiteSignals and Systems, 
+Linear Algebra
+Instructor(s)Fareed Jafri ContactPlease DM me on What’s App
+Office1st Floor,
+CE Department Office HoursBy appointment
+Please DM me on What’s App
+Teaching 
+AssistantNoneLaboratory 
+ScheduleSee time table
+Course 
+DescriptionThe objective of the course is to familiarize students with mathematical tools and
+techniques that can be used to enable computers digitally process signals .Measurable Learning Outcomes
+CLOs DescriptionTaxonomy
+& Domain
+LevelPLOs 
+CLO1Students will be able to identify the effects of sampling a
+signal in both the time domain and the frequency domain.Cognitive,
+4PLO2
+CLO2Students will be able to investigate digital and discrete-
+time  signals  and  systems  using  signal  processing
+techniques  in  both  the  time  domain  and  the  frequency
+domain.Cognitive,
+4PLO4
+CLO3Students will be able to design digital and discrete-time
+systems  or  filters  to  perform  specific  signal  processing
+tasks.Cognitive,
+5PLO3
+TextbooksRECOMMENDED : 
+1.  Discrete  Time  Signal  Processing,  Alan  V.  Oppenheim  and  R.  W.  Schafer,
+Pearson, 2014
+2. Signals and Systems, Alan. V. Oppenhiem and Alan. S. Willsky
+OPTIONAL:
+1.  Digital  Signal  Processing  Principals,  Algorithms  and  Applications,  John  G.
+Proakis, Dimitris K. Manolakis
+Student 
+Resourceshttps://drive.google.com/drive/folders/10E-
+lLahWzasaG6Men4ITA4VNvRfQqaWu?usp=sharing
+Grading 
+Policy Exams Weightage CLOs
+Midterm 30% CLO1, CLO2
+Final 40% CLO1, CLO2, CLO3
+Quiz1 10% CLO, CLO2
+Quiz2 10% CLO, CLO2, CLO3
+CEP 10% CLO3
